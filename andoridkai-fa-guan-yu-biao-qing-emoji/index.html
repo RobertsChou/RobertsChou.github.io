@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>建一个自己的博客  2016/01/03</title>
+    <title>Andorid开发关于表情（Emoji）</title>
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="HandheldFriendly" content="True">
@@ -38,16 +38,16 @@
     
     <meta property="og:site_name" content="白袍君" />
     <meta property="og:type" content="article" />
-    <meta property="og:title" content="建一个自己的博客  2016/01/03" />
-    <meta property="og:description" content="First Blog Online 白袍君  主要是用来记录平时的所思所想,记录生活，日进一步。..." />
-    <meta property="og:url" content="http://localhost:2368/2016-01-03/" />
-    <meta property="article:published_time" content="2016-01-03T15:05:08.303Z" />
-    <meta property="article:modified_time" content="2016-01-03T16:13:37.134Z" />
+    <meta property="og:title" content="Andorid开发关于表情（Emoji）" />
+    <meta property="og:description" content="最近在做Android的评论加上表情，挺郁闷的，刚开始在网上找了下资源，发现大部分都是本地APP表情的展示,很少有通过网络之后在手机上显示表情的源码，后来在网上找了几份关于表情的代码，在此基础上进行了改进，最终解决了这个问题。 服务器是PHP,网络数据传输格式是json字符串，下面的简要的贴一下主要的代码： 需要注意的地方: 服务器端接收到的字段先解析不要直接使用json中的字段，然后再SetText，下面是接受服务器解析的方法，实际上就是去掉方括号的过程： ArrayList contentSpanArr = new ArrayList(); public void transText(String s,TextView tv){    contentSpanArr.clear();    tv.setText(&quot;&quot;);    sortClassify(s);    for(int i=0;i&amp;lt;contentSpanArr...." />
+    <meta property="og:url" content="http://localhost:2368/andoridkai-fa-guan-yu-biao-qing-emoji/" />
+    <meta property="article:published_time" content="2016-01-11T06:02:52.218Z" />
+    <meta property="article:modified_time" content="2016-01-11T06:02:52.218Z" />
     
     <meta name="twitter:card" content="summary" />
-    <meta name="twitter:title" content="建一个自己的博客  2016/01/03" />
-    <meta name="twitter:description" content="First Blog Online 白袍君  主要是用来记录平时的所思所想,记录生活，日进一步。..." />
-    <meta name="twitter:url" content="http://localhost:2368/2016-01-03/" />
+    <meta name="twitter:title" content="Andorid开发关于表情（Emoji）" />
+    <meta name="twitter:description" content="最近在做Android的评论加上表情，挺郁闷的，刚开始在网上找了下资源，发现大部分都是本地APP表情的展示,很少有通过网络之后在手机上显示表情的源码，后来在网上找了几份关于表情的代码，在此基础上进行了改进，最终解决了这个问题。 服务器是PHP,网络数据传输格式是json字符串，下面的简要的贴一下主要的代码： 需要注意的地方: 服务器端接收到的字段先解析不要直接使用json中的字段，然后再SetText，下面是接受服务器解析的方法，实际上就是去掉方括号的过程： ArrayList contentSpanArr = new ArrayList(); public void transText(String s,TextView tv){    contentSpanArr.clear();    tv.setText(&quot;&quot;);    sortClassify(s);    for(int i=0;i&amp;lt;contentSpanArr...." />
+    <meta name="twitter:url" content="http://localhost:2368/andoridkai-fa-guan-yu-biao-qing-emoji/" />
     
     <script type="application/ld+json">
 {
@@ -61,11 +61,11 @@
         "sameAs": null,
         "description": null
     },
-    "headline": "建一个自己的博客  2016/01/03",
-    "url": "http://localhost:2368/2016-01-03/",
-    "datePublished": "2016-01-03T15:05:08.303Z",
-    "dateModified": "2016-01-03T16:13:37.134Z",
-    "description": "First Blog Online 白袍君  主要是用来记录平时的所思所想,记录生活，日进一步。..."
+    "headline": "Andorid开发关于表情（Emoji）",
+    "url": "http://localhost:2368/andoridkai-fa-guan-yu-biao-qing-emoji/",
+    "datePublished": "2016-01-11T06:02:52.218Z",
+    "dateModified": "2016-01-11T06:02:52.218Z",
+    "description": "最近在做Android的评论加上表情，挺郁闷的，刚开始在网上找了下资源，发现大部分都是本地APP表情的展示,很少有通过网络之后在手机上显示表情的源码，后来在网上找了几份关于表情的代码，在此基础上进行了改进，最终解决了这个问题。 服务器是PHP,网络数据传输格式是json字符串，下面的简要的贴一下主要的代码： 需要注意的地方: 服务器端接收到的字段先解析不要直接使用json中的字段，然后再SetText，下面是接受服务器解析的方法，实际上就是去掉方括号的过程： ArrayList contentSpanArr = new ArrayList(); public void transText(String s,TextView tv){    contentSpanArr.clear();    tv.setText(&quot;&quot;);    sortClassify(s);    for(int i=0;i&amp;lt;contentSpanArr...."
 }
     </script>
 
@@ -91,9 +91,9 @@
       <div class="navigation">
         <div class="profile contact">
           <nav class="navigation left">
-  <ul class="links">
-      <li class="nav-home ">
-        <a href="../index.html">Home</a>
+    <ul class="links">
+      <li class="nav-home nav-current nav-current">
+        <a href="../index.html">Blog</a>
       </li>
   </ul>
 </nav>
@@ -103,16 +103,16 @@
   <ul class="social expanded">
 
   <!-- Twitter -->
-  <li class="social item hvr-grow-rotate">
+ <!--  <li class="social item hvr-grow-rotate">
     <a rel="me" target="blank" href="http://twitter.com/kikobeats" title="@Kikobeats on Twitter">
       <i class='icon icon-social-twitter'></i>
       <span class="label">Twitter</span>
     </a>
-  </li>
+  </li> -->
 
   <!-- Linkedin -->
   <li class="social item hvr-grow-rotate">
-    <a rel="me" target="blank" href="http://linkedin.com/in/kikobeats" title="Kikobeats on LinkedIn">
+    <a rel="me" target="blank" href="https://www.linkedin.com/in/Baipaojun" title="Baipaojun on LinkedIn">
       <i class='icon icon-social-linkedin'></i>
       <span class="label">Linkedin</span>
     </a>
@@ -120,17 +120,9 @@
 
   <!-- Github -->
   <li class="social item hvr-grow-rotate">
-    <a rel="me" target="blank" href="https://github.com/Kikobeats" title="Kikobeats on Github">
+    <a rel="me" target="blank" href="https://github.com/RobertsChou" title="Baipaojnu on Github">
       <i class='icon icon-social-github'></i>
       <span class="label">Github</span>
-    </a>
-  </li>
-
-  <!-- RSS -->
-  <li class="social item hvr-grow-rotate">
-    <a href="../rss/index.html" title="Subscribe to RSS">
-      <i class='icon icon-rss'></i>
-      <span class="label">RSS</span>
     </a>
   </li>
 
@@ -155,28 +147,85 @@
   <article class="post">
     <header>
       <div class="post meta">
-        <time datetime="03 Jan 2016">03 Jan 2016</time>
+        <time datetime="11 Jan 2016">11 Jan 2016</time>
         <span class="post tags"></span>
 
 
         <span class="post reading-time"> ~ <span></span> read.</span>
       </div>
-      <a alt="Tweet '建一个自己的博客  2016/01/03'" href="https://twitter.com/intent/tweet?text=%E5%BB%BA%E4%B8%80%E4%B8%AA%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2%20%202016%2F01%2F03%20%C2%BB&amp;hashtags=&amp;url=http://localhost:2368/2016-01-03/">
+      <a alt="Tweet 'Andorid开发关于表情（Emoji）'" href="https://twitter.com/intent/tweet?text=Andorid%E5%BC%80%E5%8F%91%E5%85%B3%E4%BA%8E%E8%A1%A8%E6%83%85%EF%BC%88Emoji%EF%BC%89%20%C2%BB&amp;hashtags=&amp;url=http://localhost:2368/andoridkai-fa-guan-yu-biao-qing-emoji/">
         
-        <h1 class="icon-reverse icon-social-twitter-post" id="post-title">建一个自己的博客  2016/01/03</h1>
+        <h1 class="icon-reverse icon-social-twitter-post" id="post-title">Andorid开发关于表情（Emoji）</h1>
       </a>
     </header>
 
     <div id="post-content" class="post">
-      <h3 id="firstblogonline">First Blog Online</h3>
+      <p>最近在做Android的评论加上表情，挺郁闷的，刚开始在网上找了下资源，发现大部分都是本地APP表情的展示,很少有通过网络之后在手机上显示表情的源码，后来在网上找了几份关于表情的代码，在此基础上进行了改进，最终解决了这个问题。</p>
 
-<p>白袍君 <br />
-主要是用来记录平时的所思所想,记录生活，日进一步。</p>
+<p>服务器是PHP,网络数据传输格式是json字符串，下面的简要的贴一下主要的代码：</p>
+
+<p>需要注意的地方: 服务器端接收到的字段先解析不要直接使用json中的字段，然后再SetText，下面是接受服务器解析的方法，实际上就是去掉方括号的过程：</p>
+
+<pre><code>ArrayList contentSpanArr = new ArrayList();
+
+public void transText(String s,TextView tv){
+   contentSpanArr.clear();
+   tv.setText("");
+   sortClassify(s);
+
+   for(int i=0;i&lt;contentSpanArr.size();i++){
+       String sa = contentSpanArr.get(i);
+       if(sa.startsWith("[")){
+          boolean hasEmo = false;
+          int j;
+          for(j=0;j&lt;MsgFaceUtils.faceImgNames.length;j++){
+             if(sa.equals(MsgFaceUtils.faceImgNames[j].trim())){
+                hasEmo=true;
+          SpannableString spannableString =          EmojiParser.getInstance(context).addFace(context, MsgFaceUtils.faceImgs[j],
+                        MsgFaceUtils.faceImgNames[j]);
+               tv.append(spannableString);
+            }
+        }
+        if(!hasEmo){
+            tv.append(sa);
+        }
+    }else{
+        tv.append(sa);
+    }
+  }
+}
+
+public void sortClassify(String s){
+     if (s.contains("[")) {
+       String a1 = s.substring(0,s.indexOf("["));
+       if(a1!=null&amp;&amp;a1.length()&gt;0){
+          contentSpanArr.add(a1);
+       }
+       if(s.contains("]")){
+          String z = s.substring(s.indexOf("["), s.indexOf("]")+1);
+          contentSpanArr.add(z);
+          String z1 = s.substring(s.indexOf("]")+1,s.length());
+          sortClassify(z1);
+       }else{
+          contentSpanArr.add(s);
+          return;
+       }
+     }else{
+       contentSpanArr.add(s);
+       return;
+     } 
+}
+</code></pre>
+
+<p>其它需要朋友自己在安装上<a href="https://github.com/RobertsChou/EmojiDemo">Github Demo</a>试一下就知道了，这个例子没有服务器是一个本地的，上面那个方法用到网络时才会用到。</p>
+
+<p>If you have issue ,please by email: <strong>wenbohtone@gmail.com</strong></p>
     </div>
 
     <div class="post related">
+        <a rel="prev" id="prev-btn" class="btn small square" href="../hua-shuo-svnyu-gitde-qu-bie-yi-hou-bie-zai-wen-wo-liao/index.html">← 话说Svn与Git的区别(以后别再问我了)</a>
 
-        <a rel="next" id="next-btn" class="btn small square" href="../hua-shuo-svnyu-gitde-qu-bie-yi-hou-bie-zai-wen-wo-liao/index.html">话说Svn与Git的区别(以后别再问我了) →</a>
+        <a rel="next" id="next-btn" class="btn small square" href="../cheng-chang-xu-yao-dui-zi-ji-ping-gu/index.html">成长需要对自己评估 →</a>
     </div>
 
     <footer class="post comments">

@@ -1,4 +1,168 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0" xmlns:media="http://search.yahoo.com/mrss/"><channel><title><![CDATA[白袍君]]></title><description><![CDATA[I'm a RD Engineer & life Saver .  This blog about My Thoughts, stories and ideas etc.    Make sth happen , 记录生活 , 日进一步]]></description><link>http://localhost:2368/</link><generator>Ghost 0.7</generator><lastBuildDate>Mon, 04 Jan 2016 16:26:01 GMT</lastBuildDate><atom:link href="http://localhost:2368/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[话说Svn与Git的区别(以后别再问我了)]]></title><description><![CDATA[<p>&nbsp;&nbsp;&nbsp;&nbsp;这篇主要是谈谈两者的区别，至于谁优谁劣看官自己思考吧！</p>
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0" xmlns:media="http://search.yahoo.com/mrss/"><channel><title><![CDATA[白袍君]]></title><description><![CDATA[I'm a RD Engineer & life Saver .  This blog about My Thoughts, stories and ideas etc.    Make sth happen , 记录生活 , 日进一步]]></description><link>http://localhost:2368/</link><generator>Ghost 0.7</generator><lastBuildDate>Mon, 11 Jan 2016 06:23:42 GMT</lastBuildDate><atom:link href="http://localhost:2368/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[你所不了解的Android调色板]]></title><description><![CDATA[<p>最近在做Android项目中有这样一个需求：在首页的每个Feed有一张图片，图片上有文字等其它属性，上面的属性随着图片颜色的不同做出相应的变化，保证属性都能够看得清。        </p>
+
+<p>解决方案：利用Android的Palette解析,官方文档这样介绍<a href="http://developer.android.com/reference/android/support/v7/graphics/Palette.html"><strong>Palette</strong></a>
+   <img src="http://upload-images.jianshu.io/upload_images/226425-e95963dc68134a01.png?imageMogr2/auto-orient/strip|imageView2/2/w/1240/q/100" alt="" title=""></p>
+
+<p><strong>Palette为解析图片而来</strong></p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;需要知道的是上面涉及到的Vibrant、Muted、Muted Light等都有可能会提取不到，所以我们必须保证拿到一个值作为标准，这时我们很有必要知道Palette(调色板)的原理。     </p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>调色板的简单原理</strong>：</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PC机上 显示的图象是由一个个像素组成的，每个像素都有自己的颜色属性。在PC的显示系统中，像素的颜色是基于RGB模型的，每一个像素的颜色由红(B)、绿 (G)、蓝(B)</p>]]></description><link>http://localhost:2368/ni-suo-bu-liao-jie-de-androiddiao-se-ban/</link><guid isPermaLink="false">59433217-e2f2-466f-af24-2f39c904dbfc</guid><dc:creator><![CDATA[Wilbur]]></dc:creator><pubDate>Mon, 11 Jan 2016 06:19:24 GMT</pubDate><content:encoded><![CDATA[<p>最近在做Android项目中有这样一个需求：在首页的每个Feed有一张图片，图片上有文字等其它属性，上面的属性随着图片颜色的不同做出相应的变化，保证属性都能够看得清。        </p>
+
+<p>解决方案：利用Android的Palette解析,官方文档这样介绍<a href="http://developer.android.com/reference/android/support/v7/graphics/Palette.html"><strong>Palette</strong></a>
+   <img src="http://upload-images.jianshu.io/upload_images/226425-e95963dc68134a01.png?imageMogr2/auto-orient/strip|imageView2/2/w/1240/q/100" alt="" title=""></p>
+
+<p><strong>Palette为解析图片而来</strong></p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;需要知道的是上面涉及到的Vibrant、Muted、Muted Light等都有可能会提取不到，所以我们必须保证拿到一个值作为标准，这时我们很有必要知道Palette(调色板)的原理。     </p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>调色板的简单原理</strong>：</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PC机上 显示的图象是由一个个像素组成的，每个像素都有自己的颜色属性。在PC的显示系统中，像素的颜色是基于RGB模型的，每一个像素的颜色由红(B)、绿 (G)、蓝(B)三原色组合而成。每种原色用8位表示，这样一个的颜色就是24位的。以此推算，PC的SVGA适配器可以同时显示224约一千六百多万种颜色。24位的颜色通常被称作真彩色，用真彩色显示的图象可达到十分逼真的效果。但是，真彩色的显示需要大量的视频内存，一幅640×480的真彩色图象需要约1MB的视频内存。由于数据量大增，显示真彩色会使系统的整体性能迅速下降。原理图：
+    <img src="http://upload-images.jianshu.io/upload_images/226425-8d4cd525d8907a2e.PNG?imageMogr2/auto-orient/strip|imageView2/2/w/1240/q/100" alt="" title=""></p>
+
+<pre><code>   调色板的工作原理:
+
+   为了解决这个问题，计算机使用调色板来限制颜色的数目。调色板实际上是一个有256个表项的RGB颜色表，颜色表的每项是一个24位的RGB颜色值。使用调色板时，在视频内存中存储的不是的24位颜色值，而是调色板的4位或8位的索引。这样一来，显示器可同时显示的颜色被限制在256色以内，对系统资源的耗费大大降低了(不同时刻可以采用不同的调色板，因此可以扩展总共可以显示的颜色)。
+
+   显示器可以被设置成16、256、64K、真彩色等显示模式，前两种模式需要调色板。在16或256色模式下，程序必须将想要显示的颜色正确地设置到调色板中，这样才能显示出预期的颜色。图11.1显示了调色板的工作原理。使用调色板的一个好处是不必改变视频内存中的值，只需改变调色板的颜色项就可快速地改变一幅图象的颜色或灰度。 
+
+   除此之外还要知道的一个知识点是HSL值( H: Hue 色相 S：Saturation 饱和度 L Lightness 明度)其中L是其中L是从黑(0)到白(255)渐变。最后结合上面的知识点解决问题的思路也就有了:
+
+     第一步：得到所要解析图片的BItmap
+
+     第二步：缩小Bitmap（提升性能）
+
+     第三步：异步方式提取Bitmap样本(Swatch)让样本的Color值尽量少，原因是我们主要想拿到HSL值中的Lightness明度值。
+
+     第四步：获取明度值Lightness,一般大于75%文字偏向与黑色，否则白色。
+</code></pre>
+
+<p>最后配上代码:
+<img src="http://upload-images.jianshu.io/upload_images/226425-3c18070ec210aece.png?imageMogr2/auto-orient/strip|imageView2/2/w/1240/q/100" alt="" title=""> <br>
+各位还请切磋赐教</p>
+
+<p>2015/ 7/10 于北京   白袍君</p>
+
+<p>转载请注明：<strong>白袍君及链接</strong></p>]]></content:encoded></item><item><title><![CDATA[成长需要对自己评估]]></title><description><![CDATA[<blockquote>
+  <p>这篇文章快一年了,还是体会很深</p>
+</blockquote>
+
+<p>最近发现自己学习工作的效率比较低，然后不断的反思，发现成长中少了一环，缺少评估体系，让自己大脑保持清醒状态。简单的罗列几个问题问自己，发现在罗列过程中渐渐的清楚了:</p>
+
+<p>1.最近说了什么？ <br>
+2.最近做了什么？ <br>
+3.最近想了什么？ <br>
+4.最近大部分时间花在哪了？ <br>
+5.最近改进了什么？ <br>
+6.最近发现了什么？ <br>
+7.最近哪些地方做的好，哪些地方做的不好？ <br>
+8.现在在做什么？</p>
+
+<p>试着思考下上面的问题，反思一下，发现一天做事慢慢效率提上来了，感觉回来了。</p>
+
+<p>每天都是一份礼物，且行且珍惜！！！转载注明作者：<strong>白袍君</strong></p>
+
+<pre><code>                                                                  白袍君  
+                                                                  于北京2015/4/22早晨
+</code></pre>]]></description><link>http://localhost:2368/cheng-chang-xu-yao-dui-zi-ji-ping-gu/</link><guid isPermaLink="false">0b3a4c2a-1f75-4916-8fbe-5fd2d2be296d</guid><dc:creator><![CDATA[Wilbur]]></dc:creator><pubDate>Mon, 11 Jan 2016 06:03:55 GMT</pubDate><content:encoded><![CDATA[<blockquote>
+  <p>这篇文章快一年了,还是体会很深</p>
+</blockquote>
+
+<p>最近发现自己学习工作的效率比较低，然后不断的反思，发现成长中少了一环，缺少评估体系，让自己大脑保持清醒状态。简单的罗列几个问题问自己，发现在罗列过程中渐渐的清楚了:</p>
+
+<p>1.最近说了什么？ <br>
+2.最近做了什么？ <br>
+3.最近想了什么？ <br>
+4.最近大部分时间花在哪了？ <br>
+5.最近改进了什么？ <br>
+6.最近发现了什么？ <br>
+7.最近哪些地方做的好，哪些地方做的不好？ <br>
+8.现在在做什么？</p>
+
+<p>试着思考下上面的问题，反思一下，发现一天做事慢慢效率提上来了，感觉回来了。</p>
+
+<p>每天都是一份礼物，且行且珍惜！！！转载注明作者：<strong>白袍君</strong></p>
+
+<pre><code>                                                                  白袍君  
+                                                                  于北京2015/4/22早晨
+</code></pre>]]></content:encoded></item><item><title><![CDATA[Andorid开发关于表情（Emoji）]]></title><description><![CDATA[<p>最近在做Android的评论加上表情，挺郁闷的，刚开始在网上找了下资源，发现大部分都是本地APP表情的展示,很少有通过网络之后在手机上显示表情的源码，后来在网上找了几份关于表情的代码，在此基础上进行了改进，最终解决了这个问题。</p>
+
+<p>服务器是PHP,网络数据传输格式是json字符串，下面的简要的贴一下主要的代码：</p>
+
+<p>需要注意的地方: 服务器端接收到的字段先解析不要直接使用json中的字段，然后再SetText，下面是接受服务器解析的方法，实际上就是去掉方括号的过程：</p>
+
+<pre><code>ArrayList contentSpanArr = new ArrayList();
+
+public void transText(String s,TextView tv){
+   contentSpanArr.clear();
+   tv.setText("");
+   sortClassify(s);
+
+   for(int i=0;i&lt;contentSpanArr.size();i++){
+       String sa = contentSpanArr.get(i);
+       if(sa.startsWith(</code></pre>]]></description><link>http://localhost:2368/andoridkai-fa-guan-yu-biao-qing-emoji/</link><guid isPermaLink="false">aab9593b-3de1-497f-8c12-444846d2f26e</guid><dc:creator><![CDATA[Wilbur]]></dc:creator><pubDate>Mon, 11 Jan 2016 06:02:52 GMT</pubDate><content:encoded><![CDATA[<p>最近在做Android的评论加上表情，挺郁闷的，刚开始在网上找了下资源，发现大部分都是本地APP表情的展示,很少有通过网络之后在手机上显示表情的源码，后来在网上找了几份关于表情的代码，在此基础上进行了改进，最终解决了这个问题。</p>
+
+<p>服务器是PHP,网络数据传输格式是json字符串，下面的简要的贴一下主要的代码：</p>
+
+<p>需要注意的地方: 服务器端接收到的字段先解析不要直接使用json中的字段，然后再SetText，下面是接受服务器解析的方法，实际上就是去掉方括号的过程：</p>
+
+<pre><code>ArrayList contentSpanArr = new ArrayList();
+
+public void transText(String s,TextView tv){
+   contentSpanArr.clear();
+   tv.setText("");
+   sortClassify(s);
+
+   for(int i=0;i&lt;contentSpanArr.size();i++){
+       String sa = contentSpanArr.get(i);
+       if(sa.startsWith("[")){
+          boolean hasEmo = false;
+          int j;
+          for(j=0;j&lt;MsgFaceUtils.faceImgNames.length;j++){
+             if(sa.equals(MsgFaceUtils.faceImgNames[j].trim())){
+                hasEmo=true;
+          SpannableString spannableString =          EmojiParser.getInstance(context).addFace(context, MsgFaceUtils.faceImgs[j],
+                        MsgFaceUtils.faceImgNames[j]);
+               tv.append(spannableString);
+            }
+        }
+        if(!hasEmo){
+            tv.append(sa);
+        }
+    }else{
+        tv.append(sa);
+    }
+  }
+}
+
+public void sortClassify(String s){
+     if (s.contains("[")) {
+       String a1 = s.substring(0,s.indexOf("["));
+       if(a1!=null&amp;&amp;a1.length()&gt;0){
+          contentSpanArr.add(a1);
+       }
+       if(s.contains("]")){
+          String z = s.substring(s.indexOf("["), s.indexOf("]")+1);
+          contentSpanArr.add(z);
+          String z1 = s.substring(s.indexOf("]")+1,s.length());
+          sortClassify(z1);
+       }else{
+          contentSpanArr.add(s);
+          return;
+       }
+     }else{
+       contentSpanArr.add(s);
+       return;
+     } 
+}
+</code></pre>
+
+<p>其它需要朋友自己在安装上<a href="https://github.com/RobertsChou/EmojiDemo">Github Demo</a>试一下就知道了，这个例子没有服务器是一个本地的，上面那个方法用到网络时才会用到。</p>
+
+<p>If you have issue ,please by email: <strong>wenbohtone@gmail.com</strong></p>]]></content:encoded></item><item><title><![CDATA[话说Svn与Git的区别(以后别再问我了)]]></title><description><![CDATA[<p>&nbsp;&nbsp;&nbsp;&nbsp;这篇主要是谈谈两者的区别，至于谁优谁劣看官自己思考吧！</p>
 
 <p>&nbsp;&nbsp;&nbsp;&nbsp;这把第一条理解到位思想到位了做起来才会有的放矢，其他几条都是用的时候才能体会到</p>
 
