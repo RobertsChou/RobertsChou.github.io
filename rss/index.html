@@ -1,4 +1,149 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0" xmlns:media="http://search.yahoo.com/mrss/"><channel><title><![CDATA[白袍君]]></title><description><![CDATA[I'm a RD Engineer & life Saver .  This blog about My Thoughts, stories and ideas etc.    Make sth happen , 记录生活 , 日进一步]]></description><link>http://localhost:2368/</link><generator>Ghost 0.7</generator><lastBuildDate>Sat, 13 Feb 2016 06:29:01 GMT</lastBuildDate><atom:link href="http://localhost:2368/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[How to get Startup ideas?(下半部）]]></title><description><![CDATA[<p><strong>6.竞争（competition）</strong></p>
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0" xmlns:media="http://search.yahoo.com/mrss/"><channel><title><![CDATA[白袍君]]></title><description><![CDATA[I'm a RD Engineer & life Saver .  This blog about My Thoughts, stories and ideas etc.    Make sth happen , 记录生活 , 日进一步]]></description><link>http://localhost:2368/</link><generator>Ghost 0.7</generator><lastBuildDate>Wed, 23 Mar 2016 08:51:39 GMT</lastBuildDate><atom:link href="http://localhost:2368/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[Android增量更新的坑&坑]]></title><description><![CDATA[<p><strong>在前面:这篇文章是基于Mac系统，Window估计思路差不多</strong>。(>_&lt;)！！！</p>
+
+<p>背景：</p>
+
+<p>现在移动应用市场APP随着的需求的增加包体积也在不断的增大，以及应用版本不断的发布，按照通畅做法，APP升级会需要很多的流量，而且还慢，这种情况下用户体验需要提高，需要找到一种轻量升级方案。在Google I/O 上提及的 Smart App update，即应用增量升级，或者叫做差分升级的做法，并在新版的Google Play以及国内各大应用分发平台已经可以很好的做到这点。目前我们也计划采用增量的方式升级应用。</p>
+
+<p><strong>增量升级的原理</strong>：</p>
+
+<ul>
+<li>先生成新版本与旧版本之间的差分包</li>
+<li>手机Client端获取相对应版本的差分包，旧版本的APK与差分包，合成一个新的APK</li>
+<li>校验新合成的微博客户端文件是否完成，签名时候和已安装客户端一致，如一直，提示用户安装</li>
+<li>新的APK一般放在SD卡上，安装完成后从SD卡删除，这些都是由系统自动处理</li>
+</ul>
+
+<p><strong>OK,Let’s GO</strong>…..</p>
+
+<ul>
+<li><p>差分（新版APK与旧版APK）</p>
+
+<p>差分（Diff）工具使用的是bsdiff,这个工具可以通过MAC Terminal cmd: which bsdiff查看是否安装，</p></li></ul>]]></description><link>http://localhost:2368/androidzeng-liang-geng-xin-de-keng-keng/</link><guid isPermaLink="false">203a3e20-8337-4b87-9f39-c2e9a1154dde</guid><dc:creator><![CDATA[Wilbur]]></dc:creator><pubDate>Wed, 23 Mar 2016 08:50:36 GMT</pubDate><content:encoded><![CDATA[<p><strong>在前面:这篇文章是基于Mac系统，Window估计思路差不多</strong>。(>_&lt;)！！！</p>
+
+<p>背景：</p>
+
+<p>现在移动应用市场APP随着的需求的增加包体积也在不断的增大，以及应用版本不断的发布，按照通畅做法，APP升级会需要很多的流量，而且还慢，这种情况下用户体验需要提高，需要找到一种轻量升级方案。在Google I/O 上提及的 Smart App update，即应用增量升级，或者叫做差分升级的做法，并在新版的Google Play以及国内各大应用分发平台已经可以很好的做到这点。目前我们也计划采用增量的方式升级应用。</p>
+
+<p><strong>增量升级的原理</strong>：</p>
+
+<ul>
+<li>先生成新版本与旧版本之间的差分包</li>
+<li>手机Client端获取相对应版本的差分包，旧版本的APK与差分包，合成一个新的APK</li>
+<li>校验新合成的微博客户端文件是否完成，签名时候和已安装客户端一致，如一直，提示用户安装</li>
+<li>新的APK一般放在SD卡上，安装完成后从SD卡删除，这些都是由系统自动处理</li>
+</ul>
+
+<p><strong>OK,Let’s GO</strong>…..</p>
+
+<ul>
+<li><p>差分（新版APK与旧版APK）</p>
+
+<p>差分（Diff）工具使用的是bsdiff,这个工具可以通过MAC Terminal cmd: which bsdiff查看是否安装，有的貌似已经自带了, 使用的方法    bsdiff  oldFilePath newFilePath patchFilePath</p></li>
+<li><p>合成  (将下载到的差分包和旧版APK合成成新的APK）</p>
+
+<p>合成工具是batch， 这个mac 貌似也已经默认安装了，同样可以通过上面的方法查看</p></li>
+<li><p>NDK编译获取到.so文件；注意这里是坑&amp;坑的聚集地，首先配置NDK编译环境</p></li>
+</ul>
+
+<p>(1)从Android Studio 1.3 Beta1开始，就支持了NDK。不过需要使用的是一个全新的实验性的gradle构建工具（继续往下看有介绍）。官方地址<a href="http://tools.android.com/tech-docs/new-build-system/gradle-experimental，英文好的可以直接看原文">http://tools.android.com/tech-docs/new-build-system/gradle-experimental，英文好的可以直接看原文</a></p>
+
+<p>目前使用的最新的是Android Studio2.0版本
+<img src="http://localhost:2368/content/images/2016/03/a.png" alt=""></p>
+
+<p>(2)使用Android Studio内置的SDK管理器下载NDK
+<img src="http://localhost:2368/content/images/2016/03/b.png" alt=""></p>
+
+<p>(3)然后：点击File -> Project Structure ->出现下图为Android NDK选择路径
+<img src="http://localhost:2368/content/images/2016/03/c.png" alt=""></p>
+
+<p>(4)接下来要修改的被标红的文件如下三个：
+<img src="http://localhost:2368/content/images/2016/03/d.png" alt=""></p>
+
+<p>app Moudle内的build.grade 修改：</p>
+
+<ul>
+<li>com.android.application 改为 com.android.model.application</li>
+<li>原来的基础上加一个model{}</li>
+<li>键值对（Key - Value）都要用”=“号</li>
+<li>defaultConfig 改为 defaultConfig.with</li>
+<li>添加compileOption.with{},以及相应的编译环境</li>
+<li>buildTypes 修改为 android.buildTypes{}</li>
+<li>添加android.ndk{},以及里面的相应配置</li>
+</ul>
+
+<p>最后就是这个样子
+<img src="http://localhost:2368/content/images/2016/03/e.png" alt=""></p>
+
+<p>(5)并且需要gradle 2.5的支持，将gradle/gradle-wrapper.properties中的版本修改为2.5</p>
+
+<p>distributionUrl=https\://services.gradle.org/distributions/gradle-2.5-all.zip <br>
+<img src="http://localhost:2368/content/images/2016/03/f.png" alt=""></p>
+
+<p>(6)首先需要将根目录下的gradle修改为实验性的gradle</p>
+
+<p>classpath 'com.android.tools.build:gradle-experimental:0.2.0'</p>
+
+<p>最终是这样的
+<img src="http://localhost:2368/content/images/2016/03/g.png" alt=""></p>
+
+<p>(7)在android.ndk中进行ndk的配置，模块名字是必须的，并且支持armeabi，armeabi-v7a，x86三个平台。</p>
+
+<p>然后增加jni目录，在main上右键新建jni目录
+<img src="http://localhost:2368/content/images/2016/03/h.png" alt=""></p>
+
+<p>(8)接下来创建一个工具类：
+<img src="http://localhost:2368/content/images/2016/03/i.png" alt=""></p>
+
+<p>(9)继续点开AS的Terminal标签，默认进入到该项目的app文件夹下。我在windows平台下输入如下命令跳转到class中间文件生成路径：</p>
+
+<p>xxxxx\app> cd build\intermediates\classes\debug</p>
+
+<p>然后执行如下javah命令生成h文件。</p>
+
+<p>xxxxx\debug> javah -jni 包名+类名（例如：PathUtils）</p>
+
+<p>执行完之后你可以在文件夹app\build\intermediates\classes\debug下看见生成的 .h头文件为：</p>
+
+<p>包名+类名（例如：PathUtils）.h</p>
+
+<p>(10)在得到.h文件后在创建一个.c文件，最后是这样
+<img src="http://localhost:2368/content/images/2016/03/j.jpg" alt="">
+(11)编译后的.so文件在哪 ，在app/build/intermediates/binaries/debug/目录下</p>
+
+<p>(12)编译好的.so文件用到其他地方时保证包名和编译时的包名一致</p>
+
+<p>(13)注意全程并没有用到Android.mk文件</p>
+
+<p><strong>抽空把demo分享出来</strong> )>_&lt;(</p>
+
+<p>常见的异常如下，请对号入座：</p>
+
+<ul>
+<li>所有值的设置都要写成 xxx = yyyy的形式，比如： applicationId = "com.zyp.ndktest" （自动生成的gradle 则可能是： applicationId = "com.zyp.ndktest"  ），否则会爆这种错误：Error:Cause: org.gradle.api.internal.ExtensibleDynamicObject， 当出现此类错误，检查是否都用了 “=”的方式。</li>
+<li>buildTypes 需要从android{} 中取出来，写成android.buildTypes{}的形式，否则会出现这种错误：Error:Unable to load class 'org.gradle.nativeplatform.internal.DefaultBuildType_Decorated'.</li>
+<li><p>此外，自动生成的buildTypes的形式和上面的也不一样为以下的形式：</p>
+
+<pre><code>release {     
+     minifyEnabled false
+     proguardFiles getDefaultProguardFile('proguard-android.txt'),                'proguard-rules.pro'
+}
+</code></pre>
+
+<p>需要改成上面文件中的格式，否则会报这种错误：Error:No signature of method: org.gradle.model.ModelMap.minifyEnabled() is applicable for argument types: (java.lang.Boolean) values: [false]</p></li>
+<li><p>defaultConfig{} 需要写成defaultConfig.with{} 的形式，否则会报这种错误：Error:Cause: com.android.build.gradle.managed.AndroidConfig_Impl</p></li>
+<li><p>在defaultConfig.with{} 中 需要写成</p>
+
+<pre><code>minSdkVersion.apiLevel  = 19
+targetSdkVersion.apiLevel = 23
+</code></pre>
+
+<p>也就是比自动生成的多 .apiLevel ，否则会报这种错误：Unable to load class com.android.build.gradle.managed.ProductFlavor_Impl</p></li>
+<li><p>增加compileOptions.with{} 需要选择JavaVersion.VERSION<em>1</em>7，否则会报这种错误：Bad class file magic or version</p>
+
+<pre><code>2016/03/23下午于北京，天气很好
+转载请注明链接：谢谢)&gt;_&lt;(  
+</code></pre></li>
+</ul>]]></content:encoded></item><item><title><![CDATA[How to get Startup ideas?(下半部）]]></title><description><![CDATA[<p><strong>6.竞争（competition）</strong></p>
 
 <p>因为一个好的idea应该是显而易见的，易于表达的，当你有种直觉感到你的那个想法要晚了，不要让这一切阻止你。担忧你已经晚了，这是一个好的idea的标识之一。10分钟的网页研究通常会定位到问题。即使你发现了其他人也正在做同样的事情，可能也不算晚。在刚开始创业阶段被竞争对手干掉是极其罕见的一件事， 所以尽量不要夸张那种可能性。所以如果你在锁定区域并没有发现竞争对手阻止用户选择你，就不要放弃你的idea。</p>
 
